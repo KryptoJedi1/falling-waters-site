@@ -1,235 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Falling Waters • Kernville</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap">
-<style>
-  body { font-family: 'Source Sans Pro', system-ui, sans-serif; }
-  .heading-serif { font-family: 'Playfair Display', serif; }
-  .hero img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
-  }
-  .hero img.active { opacity: 1; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Falling Waters • Kernville</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap">
+  <style>
+    body {
+      font-family: 'Source Sans Pro', system-ui, sans-serif;
+    }
+
+    .heading-serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    .hero img.active {
+      opacity: 1;
+    }
+  </style>
 </head>
+
 <body class="bg-stone-50 text-stone-800">
 
-<!-- Nav -->
-<nav class="bg-[#2c3e50] text-white">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-    <a href="index.html" class="font-bold text-2xl py-5">Falling Waters</a>
-    <div class="hidden md:flex items-center gap-x-1 text-sm">
-      <a href="rooms.html" class="px-4 py-5 hover:bg-[#1a252f]">Rooms</a>
-      <a href="gallery.html" class="px-4 py-5 hover:bg-[#1a252f]">Gallery</a>
-      <a href="attractions.html" class="px-4 py-5 hover:bg-[#1a252f]">Attractions</a>
-      <a href="contact-us.html" class="px-4 py-5 hover:bg-[#1a252f]">Contact Us</a>
-      <a href="about-us.html" class="px-4 py-5 hover:bg-[#1a252f]">About Us</a>
+  <!-- Nav -->
+  <nav class="bg-[#2c3e50] text-white">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <a href="index.html" class="font-bold text-2xl py-5">Falling Waters</a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-x-1 text-sm">
+        <a href="rooms.html" class="px-4 py-5 hover:bg-[#1a252f]">Rooms</a>
+        <a href="gallery.html" class="px-4 py-5 hover:bg-[#1a252f]">Gallery</a>
+        <a href="attractions.html" class="px-4 py-5 hover:bg-[#1a252f]">Attractions</a>
+        <a href="contact-us.html" class="px-4 py-5 hover:bg-[#1a252f]">Contact Us</a>
+        <a href="about-us.html" class="px-4 py-5 hover:bg-[#1a252f]">About Us</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 text-white hover:bg-[#1a252f] rounded">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobileMenu" class="hidden md:hidden bg-[#1a252f] border-t border-[#2c3e50]">
+      <a href="rooms.html" class="block px-6 py-3 text-sm hover:bg-[#0f1823]">Rooms</a>
+      <a href="gallery.html" class="block px-6 py-3 text-sm hover:bg-[#0f1823]">Gallery</a>
+      <a href="attractions.html" class="block px-6 py-3 text-sm hover:bg-[#0f1823]">Attractions</a>
+      <a href="contact-us.html" class="block px-6 py-3 text-sm hover:bg-[#0f1823]">Contact Us</a>
+      <a href="about-us.html" class="block px-6 py-3 text-sm hover:bg-[#0f1823]">About Us</a>
+    </div>
+  </nav>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close menu when link is clicked
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+
+  <!-- Header -->
+  <header class="bg-[#2c3e50] text-white border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center py-3">
+      <a href="tel:7603762242" class="text-xl md:text-2xl font-semibold text-[#f1c40f] tracking-tight">760 376 2242</a>
+      <span class="text-sm text-white/90 hidden sm:block">Kernville, California</span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero relative h-[520px] flex items-center justify-center overflow-hidden bg-black" id="hero">
+    <div class="hero-content relative z-10 text-center px-6">
+      <h1 class="heading-serif text-white text-4xl md:text-5xl font-bold tracking-tight">Your home away from home</h1>
+      <p class="mt-3 text-xl text-white/90 max-w-md mx-auto">A wonderful place to relax and unwind from the frenetic
+        pace of city life.</p>
+      <p class="mt-6 text-sm text-white/70">Call us to reserve your stay</p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
+    <div class="max-w-2xl">
+      <h2 class="heading-serif text-3xl text-[#2c3e50]">Falling Waters</h2>
+      <p class="mt-4 text-lg text-stone-600">Join us for a relaxing retreat along the beautiful Kern River!</p>
     </div>
   </div>
-</nav>
 
-<!-- Header -->
-<header class="bg-[#2c3e50] text-white border-t border-white/10">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center py-3">
-    <a href="tel:7603762242" class="text-xl md:text-2xl font-semibold text-[#f1c40f] tracking-tight">760 376 2242</a>
-    <span class="text-sm text-white/90 hidden sm:block">Kernville, California</span>
-  </div>
-</header>
+  <!-- Rooms -->
+  <div class="max-w-7xl mx-auto px-6 pb-16">
+    <div class="flex items-end justify-between mb-6">
+      <h2 class="heading-serif text-3xl text-[#2c3e50]">Rooms</h2>
+      <a href="rooms.html" class="text-sm font-semibold text-[#2c3e50] hover:underline">See all rooms →</a>
+    </div>
 
-<!-- Hero -->
-<section class="hero relative h-[520px] flex items-center justify-center overflow-hidden bg-black" id="hero">
-  <div class="hero-content relative z-10 text-center px-6">
-    <h1 class="heading-serif text-white text-4xl md:text-5xl font-bold tracking-tight">Your home away from home</h1>
-    <p class="mt-3 text-xl text-white/90 max-w-md mx-auto">A wonderful place to relax and unwind from the frenetic pace of city life.</p>
-    <p class="mt-6 text-sm text-white/70">Call us to reserve your stay</p>
-  </div>
-</section>
-
-<!-- Intro -->
-<div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
-  <div class="max-w-2xl">
-    <h2 class="heading-serif text-3xl text-[#2c3e50]">Falling Waters</h2>
-    <p class="mt-4 text-lg text-stone-600">Join us for a relaxing retreat along the beautiful Kern River!</p>
-  </div>
-</div>
-
-<!-- Rooms -->
-<div class="max-w-7xl mx-auto px-6 pb-16">
-  <div class="flex items-end justify-between mb-6">
-    <h2 class="heading-serif text-3xl text-[#2c3e50]">Rooms</h2>
-    <a href="rooms.html" class="text-sm font-semibold text-[#2c3e50] hover:underline">See all rooms →</a>
-  </div>
-
-  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
-      <img src="images/Rooms/Riverside King/(1)cd15e162-728a-47dd-a122-f413b291ceaa.avif" class="w-full h-48 object-cover" alt="Riverside King bed">
-      <div class="p-5">
-        <h3 class="font-semibold text-lg">Riverside, King Bed</h3>
-        <div class="text-xs text-stone-500 mt-1 mb-3">Riverfront • King Bed</div>
-        <div class="text-xs space-y-1 text-stone-600">
-          <div>Air Conditioning • Balcony/Terrace</div>
-          <div>Working Fireplace • Kitchenette</div>
-          <div>Refrigerator • Cable TV • WiFi</div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
+        <img src="images/Rooms/Riverside King/(1)cd15e162-728a-47dd-a122-f413b291ceaa.avif"
+          class="w-full h-48 object-cover" alt="Riverside King bed">
+        <div class="p-5">
+          <h3 class="font-semibold text-lg">Riverside, King Bed</h3>
+          <div class="text-xs text-stone-500 mt-1 mb-3">Riverfront • King Bed</div>
+          <div class="text-xs space-y-1 text-stone-600">
+            <div>Air Conditioning • Balcony/Terrace</div>
+            <div>Working Fireplace • Kitchenette</div>
+            <div>Refrigerator • Cable TV • WiFi</div>
+          </div>
+          <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
         </div>
-        <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
+        <img src="images/Rooms/Riverside Queen/(1)f7cea144-71ed-4fee-b438-40ef2877158f.avif"
+          class="w-full h-48 object-cover" alt="Riverside Queen and double">
+        <div class="p-5">
+          <h3 class="font-semibold text-lg">Riverside, Queen &amp; Double</h3>
+          <div class="text-xs text-stone-500 mt-1 mb-3">Riverfront • Queen + Double</div>
+          <div class="text-xs space-y-1 text-stone-600">
+            <div>Air Conditioning • Working Fireplace</div>
+            <div>Kitchenette • Refrigerator • Cable TV</div>
+            <div>WiFi • Non-smoking</div>
+          </div>
+          <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
+        <img src="images/Rooms/Poolview King/(1)5306075c-4b5e-406a-8251-56110028bc70.avif"
+          class="w-full h-48 object-cover" alt="Pool View King">
+        <div class="p-5">
+          <h3 class="font-semibold text-lg">Pool View, King Bed</h3>
+          <div class="text-xs text-stone-500 mt-1 mb-3">Pool View • King Bed</div>
+          <div class="text-xs space-y-1 text-stone-600">
+            <div>Air Conditioning • Balcony/Terrace</div>
+            <div>Working Fireplace • Kitchenette</div>
+            <div>Refrigerator • Cable TV • WiFi</div>
+          </div>
+          <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
+        <img src="images/Rooms/Courtyard Queen Dbl/(1)97d3d3e8-3545-4666-9e32-37f42275fba9.avif"
+          class="w-full h-48 object-cover" alt="Courtyard Queen and Double">
+        <div class="p-5">
+          <h3 class="font-semibold text-lg">Courtyard, Queen &amp; Double</h3>
+          <div class="text-xs text-stone-500 mt-1 mb-3">Courtyard View • Queen + Double</div>
+          <div class="text-xs space-y-1 text-stone-600">
+            <div>Air Conditioning • Balcony/Terrace</div>
+            <div>Working Fireplace • Daily Maid Service</div>
+            <div>Kitchenette • Refrigerator • WiFi</div>
+          </div>
+          <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
-      <img src="images/Rooms/Riverside Queen/(1)f7cea144-71ed-4fee-b438-40ef2877158f.avif" class="w-full h-48 object-cover" alt="Riverside Queen and double">
-      <div class="p-5">
-        <h3 class="font-semibold text-lg">Riverside, Queen &amp; Double</h3>
-        <div class="text-xs text-stone-500 mt-1 mb-3">Riverfront • Queen + Double</div>
-        <div class="text-xs space-y-1 text-stone-600">
-          <div>Air Conditioning • Working Fireplace</div>
-          <div>Kitchenette • Refrigerator • Cable TV</div>
-          <div>WiFi • Non-smoking</div>
+  <!-- About Us -->
+  <div class="bg-white border-t border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <div class="max-w-3xl">
+        <h2 class="heading-serif text-3xl text-[#2c3e50] mb-6">About Falling Waters</h2>
+        <div class="prose prose-stone text-[15px] leading-relaxed text-stone-700">
+          <p>Located on the banks of the National Wild and Scenic Kern River, just a few short miles north of historic
+            Kernville, California, our rustic river resort awaits your pleasure.</p>
+          <p class="mt-4">The moment you step into the resort office you'll admire the attention to detail and comfort
+            that you'd expect from the finest hostels anywhere. But our exquisite, tastefully furnished rooms and low
+            budget saving rates will amaze you even more.</p>
+          <p class="mt-4">Most rooms, but not all are pet friendly so bring your furry friend along for the adventure.
+            We have something for everyone, and every age, in your family or group. You can roam the vast manicured
+            grounds; drop your line, a few short steps from your room, for delectable rainbow trout; or just relax and
+            take in the sun at our crystal blue swimming pool.</p>
+          <p class="mt-4">But that's just the calm before the rapids. A vast choice of nature's excitement and options
+            surround the resort. Many of our guests are here for outdoor recreation and adventure, and Falling Waters is
+            right in the middle of the action. If you're searching for fantastic fishing, whitewater rafting and
+            kayaking thrills, rock climbing, trail hiking, mountain biking, or gazing upon the beautiful grandeur of the
+            Kern River Valley and Sequoia National Forest, our resort is the ideal rendezvous and evening retreat for
+            you and your group.</p>
+          <p class="mt-4">Some of our guests are here for the casual rest and relaxation. Some prefer browsing the
+            quaint antique and gift shops in Kernville. No matter what your goals are, winter, spring, summer, or fall…
+            Falling Waters is your answer!</p>
         </div>
-        <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
-      <img src="images/Rooms/Poolview King/(1)5306075c-4b5e-406a-8251-56110028bc70.avif" class="w-full h-48 object-cover" alt="Pool View King">
-      <div class="p-5">
-        <h3 class="font-semibold text-lg">Pool View, King Bed</h3>
-        <div class="text-xs text-stone-500 mt-1 mb-3">Pool View • King Bed</div>
-        <div class="text-xs space-y-1 text-stone-600">
-          <div>Air Conditioning • Balcony/Terrace</div>
-          <div>Working Fireplace • Kitchenette</div>
-          <div>Refrigerator • Cable TV • WiFi</div>
-        </div>
-        <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
-      <img src="images/Rooms/Courtyard Queen Dbl/(1)97d3d3e8-3545-4666-9e32-37f42275fba9.avif" class="w-full h-48 object-cover" alt="Courtyard Queen and Double">
-      <div class="p-5">
-        <h3 class="font-semibold text-lg">Courtyard, Queen &amp; Double</h3>
-        <div class="text-xs text-stone-500 mt-1 mb-3">Courtyard View • Queen + Double</div>
-        <div class="text-xs space-y-1 text-stone-600">
-          <div>Air Conditioning • Balcony/Terrace</div>
-          <div>Working Fireplace • Daily Maid Service</div>
-          <div>Kitchenette • Refrigerator • WiFi</div>
-        </div>
-        <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
+        <a href="about-us.html" class="inline-block mt-6 text-sm font-semibold text-[#2c3e50] hover:underline">Read more
+          about us →</a>
       </div>
     </div>
   </div>
-</div>
 
-<!-- About Us -->
-<div class="bg-white border-t border-b border-stone-200">
+  <!-- Gallery Teaser -->
   <div class="max-w-7xl mx-auto px-6 py-16">
-    <div class="max-w-3xl">
-      <h2 class="heading-serif text-3xl text-[#2c3e50] mb-6">About Falling Waters</h2>
-      <div class="prose prose-stone text-[15px] leading-relaxed text-stone-700">
-        <p>Located on the banks of the National Wild and Scenic Kern River, just a few short miles north of historic Kernville, California, our rustic river resort awaits your pleasure.</p>
-        <p class="mt-4">The moment you step into the resort office you'll admire the attention to detail and comfort that you'd expect from the finest hostels anywhere. But our exquisite, tastefully furnished rooms and low budget saving rates will amaze you even more.</p>
-        <p class="mt-4">Most rooms, but not all are pet friendly so bring your furry friend along for the adventure. We have something for everyone, and every age, in your family or group. You can roam the vast manicured grounds; drop your line, a few short steps from your room, for delectable rainbow trout; or just relax and take in the sun at our crystal blue swimming pool.</p>
-        <p class="mt-4">But that's just the calm before the rapids. A vast choice of nature's excitement and options surround the resort. Many of our guests are here for outdoor recreation and adventure, and Falling Waters is right in the middle of the action. If you're searching for fantastic fishing, whitewater rafting and kayaking thrills, rock climbing, trail hiking, mountain biking, or gazing upon the beautiful grandeur of the Kern River Valley and Sequoia National Forest, our resort is the ideal rendezvous and evening retreat for you and your group.</p>
-        <p class="mt-4">Some of our guests are here for the casual rest and relaxation. Some prefer browsing the quaint antique and gift shops in Kernville. No matter what your goals are, winter, spring, summer, or fall… Falling Waters is your answer!</p>
-      </div>
-      <a href="about-us.html" class="inline-block mt-6 text-sm font-semibold text-[#2c3e50] hover:underline">Read more about us →</a>
+    <div class="flex items-end justify-between mb-6">
+      <h2 class="heading-serif text-3xl text-[#2c3e50]">Gallery</h2>
+      <a href="gallery.html" class="text-sm font-semibold text-[#2c3e50] hover:underline">See all photos →</a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <img src="images/Homepage/Hero Scroll/(1)e45ee278-89e9-42cd-9fc3-5c08a667f6cf.avif"
+        class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
+      <img src="images/Homepage/Hero Scroll/(2)de5d1d2c-0115-4e5c-9739-c84c8108991f.avif"
+        class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
+      <img src="images/Homepage/Hero Scroll/(3)1f8c5711-faa6-4a6d-be7b-8daf4d1170cb.avif"
+        class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
+      <img src="images/Homepage/Hero Scroll/(4)b4215f94-a363-49e9-97e4-03cd51b9468b.avif"
+        class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
     </div>
   </div>
-</div>
 
-<!-- Gallery Teaser -->
-<div class="max-w-7xl mx-auto px-6 py-16">
-  <div class="flex items-end justify-between mb-6">
-    <h2 class="heading-serif text-3xl text-[#2c3e50]">Gallery</h2>
-    <a href="gallery.html" class="text-sm font-semibold text-[#2c3e50] hover:underline">See all photos →</a>
-  </div>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-    <img src="images/Homepage/Hero Scroll/(1)e45ee278-89e9-42cd-9fc3-5c08a667f6cf.avif" class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
-    <img src="images/Homepage/Hero Scroll/(2)de5d1d2c-0115-4e5c-9739-c84c8108991f.avif" class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
-    <img src="images/Homepage/Hero Scroll/(3)1f8c5711-faa6-4a6d-be7b-8daf4d1170cb.avif" class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
-    <img src="images/Homepage/Hero Scroll/(4)b4215f94-a363-49e9-97e4-03cd51b9468b.avif" class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
-  </div>
-</div>
-
-<!-- Contact -->
-<div class="border-t border-stone-200 bg-white">
-  <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-10">
-    <div>
-      <h2 class="heading-serif text-3xl text-[#2c3e50]">Contact Us</h2>
-      <div class="mt-6 space-y-5 text-[15px]">
-        <div>
-          <div class="font-semibold mb-1">Call to reserve</div>
-          <a href="tel:7603762242" class="text-2xl font-semibold text-[#f1c40f] hover:underline">760 376 2242</a>
+  <!-- Contact -->
+  <div class="border-t border-stone-200 bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-10">
+      <div>
+        <h2 class="heading-serif text-3xl text-[#2c3e50]">Contact Us</h2>
+        <div class="mt-6 space-y-5 text-[15px]">
+          <div>
+            <div class="font-semibold mb-1">Call to reserve</div>
+            <a href="tel:7603762242" class="text-2xl font-semibold text-[#f1c40f] hover:underline">760 376 2242</a>
+          </div>
+          <div>
+            <div class="font-semibold">Email</div>
+            <a href="mailto:fallingwaters@chuckrichards.com"
+              class="text-[#2c3e50] hover:underline">fallingwaters@chuckrichards.com</a>
+          </div>
+          <div>
+            <div class="font-semibold">Address</div>
+            <div>15729 Sierra Way<br>Kernville, California 93238</div>
+          </div>
         </div>
-        <div>
-          <div class="font-semibold">Email</div>
-          <a href="mailto:fallingwaters@chuckrichards.com" class="text-[#2c3e50] hover:underline">fallingwaters@chuckrichards.com</a>
-        </div>
-        <div>
-          <div class="font-semibold">Address</div>
-          <div>15729 Sierra Way<br>Kernville, California 93238</div>
-        </div>
+        <a href="contact-us.html" class="inline-block mt-8 text-sm font-semibold">Full contact page →</a>
       </div>
-      <a href="contact-us.html" class="inline-block mt-8 text-sm font-semibold">Full contact page →</a>
-    </div>
 
-    <div>
-      <div class="aspect-video bg-stone-200 rounded-2xl overflow-hidden">
-        <a href="https://maps.google.com/maps?q=15729+Sierra+Way+Kernville+CA+93238" target="_blank" class="block w-full h-full">
-          <div class="w-full h-full flex items-center justify-center text-stone-500 text-sm">View on Google Maps →</div>
+      <div>
+        <a href="https://maps.google.com/maps?q=15729+Sierra+Way+Kernville+CA+93238" target="_blank" class="block rounded-2xl overflow-hidden hover:opacity-90 transition">
+          <img src="images/Homepage/map-locations.png" alt="Kernville, CA location map" class="w-full aspect-video object-cover">
         </a>
       </div>
     </div>
   </div>
-</div>
 
-<footer class="bg-[#2c3e50] text-white/80 text-center py-8 text-sm">
-  <div class="max-w-7xl mx-auto px-6">
-    © 2026 Falling Waters • Kernville, CA • <a href="tel:7603762242" class="text-[#f1c40f]">760 376 2242</a>
-  </div>
-</footer>
+  <footer class="bg-[#2c3e50] text-white/80 text-center py-8 text-sm">
+    <div class="max-w-7xl mx-auto px-6">
+      © 2026 Falling Waters • Kernville, CA • <a href="tel:7603762242" class="text-[#f1c40f]">760 376 2242</a>
+    </div>
+  </footer>
 
-<script>
-// Hero image cycle
-const heroImages = [
-  "images/Homepage/Hero Scroll/(1)e45ee278-89e9-42cd-9fc3-5c08a667f6cf.avif",
-  "images/Homepage/Hero Scroll/(2)de5d1d2c-0115-4e5c-9739-c84c8108991f.avif",
-  "images/Homepage/Hero Scroll/(3)1f8c5711-faa6-4a6d-be7b-8daf4d1170cb.avif",
-  "images/Homepage/Hero Scroll/(4)b4215f94-a363-49e9-97e4-03cd51b9468b.avif",
-  "images/Homepage/Hero Scroll/(5)449d853e-21e7-41db-9865-d3d877b09014.avif",
-  "images/Homepage/Hero Scroll/(6)7d3167f8-3dfa-449b-b646-09b022cd07bf.avif"
-];
+  <script>
+    // Hero image cycle
+    const heroImages = [
+      "images/Homepage/Hero Scroll/(1)e45ee278-89e9-42cd-9fc3-5c08a667f6cf.avif",
+      "images/Homepage/Hero Scroll/(2)de5d1d2c-0115-4e5c-9739-c84c8108991f.avif",
+      "images/Homepage/Hero Scroll/(3)1f8c5711-faa6-4a6d-be7b-8daf4d1170cb.avif",
+      "images/Homepage/Hero Scroll/(4)b4215f94-a363-49e9-97e4-03cd51b9468b.avif",
+      "images/Homepage/Hero Scroll/(5)449d853e-21e7-41db-9865-d3d877b09014.avif",
+      "images/Homepage/Hero Scroll/(6)7d3167f8-3dfa-449b-b646-09b022cd07bf.avif"
+    ];
 
-const heroSection = document.getElementById('hero');
-let currentIndex = 0;
+    const heroSection = document.getElementById('hero');
+    let currentIndex = 0;
 
-heroImages.forEach((src, index) => {
-  const img = document.createElement('img');
-  img.src = src;
-  img.alt = "Falling Waters resort along the Kern River";
-  if (index === 0) img.classList.add('active');
-  heroSection.appendChild(img);
-});
+    heroImages.forEach((src, index) => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = "Falling Waters resort along the Kern River";
+      if (index === 0) img.classList.add('active');
+      heroSection.appendChild(img);
+    });
 
-const images = heroSection.querySelectorAll('img:not(.hero-content)');
+    const images = heroSection.querySelectorAll('img:not(.hero-content)');
 
-function cycleHeroImages() {
-  images[currentIndex].classList.remove('active');
-  currentIndex = (currentIndex + 1) % images.length;
-  images[currentIndex].classList.add('active');
-}
+    function cycleHeroImages() {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+    }
 
-setInterval(cycleHeroImages, 4200);
-</script>
+    setInterval(cycleHeroImages, 4200);
+  </script>
 
 </body>
+
 </html>
