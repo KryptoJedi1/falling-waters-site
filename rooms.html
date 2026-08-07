@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rooms • Falling Waters • Kernville</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap">
+<style>
+  body { font-family: 'Source Sans Pro', system-ui, sans-serif; }
+  .heading-serif { font-family: 'Playfair Display', serif; }
+  
+  /* Lightbox Styles */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .lightbox.active {
+    display: flex;
+    opacity: 1;
+  }
+  
+  .lightbox-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .lightbox-image {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+  }
+  
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .lightbox-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .lightbox-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.2s ease;
+  }
+  
+  .lightbox-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .lightbox-nav.prev {
+    left: 20px;
+  }
+  
+  .lightbox-nav.next {
+    right: 20px;
+  }
+  
+  .lightbox-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+  }
+  
+  .gallery-img {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .gallery-img:hover {
+    transform: scale(1.02);
+  }
+</style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <img class="lightbox-image" id="lightboxImage" src="" alt="">
+    <button class="lightbox-nav prev" id="prevBtn">‹</button>
+    <button class="lightbox-nav next" id="nextBtn">›</button>
+    <div class="lightbox-controls">
+      <button class="lightbox-btn" id="closeBtn">✕</button>
+    </div>
+    <div class="lightbox-counter">
+      <span id="imageCounter">1 / 1</span>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="bg-[#2c3e50] text-white">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <a href="index.html" class="font-bold text-2xl py-5">Falling Waters</a>
+    <div class="hidden md:flex items-center gap-x-1 text-sm">
+      <a href="rooms.html" class="px-4 py-5 hover:bg-[#1a252f]">Rooms</a>
+      <a href="gallery.html" class="px-4 py-5 hover:bg-[#1a252f]">Gallery</a>
+      <a href="attractions.html" class="px-4 py-5 hover:bg-[#1a252f]">Attractions</a>
+      <a href="contact-us.html" class="px-4 py-5 hover:bg-[#1a252f]">Contact Us</a>
+      <a href="about-us.html" class="px-4 py-5 hover:bg-[#1a252f]">About Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<header class="bg-[#2c3e50] text-white border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center py-3">
+    <a href="tel:7603762242" class="text-xl md:text-2xl font-semibold text-[#f1c40f] tracking-tight">760 376 2242</a>
+    <span class="text-sm text-white/90 hidden sm:block">Kernville, California</span>
+  </div>
+</header>
+
+<!-- Page Title -->
+<div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
+  <h1 class="heading-serif text-4xl text-[#2c3e50]">Our Rooms</h1>
+</div>
+
+<!-- Rooms -->
+<div class="max-w-7xl mx-auto px-6 pb-24">
+
+  <!-- Room 1: Riverside King -->
+  <div class="mb-24">
+    <h2 class="heading-serif text-3xl text-[#2c3e50] mb-8">Riverside, King Bed</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 room-gallery" data-gallery="room-1">
+      <img src="images/Rooms/Riverside King/(1)cd15e162-728a-47dd-a122-f413b291ceaa.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside King bedroom">
+      <img src="images/Rooms/Riverside King/(2)d1d39408-73ca-43bb-ba90-ea6d03a69f89.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside King bedroom">
+      <img src="images/Rooms/Riverside King/(3)25226459-da39-4a34-84a9-8e47b6edd53e.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside King bedroom">
+      <img src="images/Rooms/Riverside King/(4)8669cff2-1568-4fb4-8120-9ac054ba079f.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside King bedroom">
+    </div>
+    <div class="bg-white rounded-2xl p-8 border border-stone-200">
+      <h3 class="font-semibold text-lg text-[#2c3e50] mb-4">Amenities</h3>
+      <ul class="grid md:grid-cols-2 gap-3 text-[15px] text-stone-600">
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Air Conditioning</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Balcony/Terrace</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Working Fireplace</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Kitchenette</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Refrigerator</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Cable/Satellite TV</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> WiFi</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Non-smoking</li>
+      </ul>
+      <p class="mt-6 text-sm text-stone-500">For reservations, call <a href="tel:7603762242" class="font-semibold text-[#2c3e50]">760 376 2242</a></p>
+    </div>
+  </div>
+
+  <!-- Room 2: Riverside Queen & Double -->
+  <div class="mb-24">
+    <h2 class="heading-serif text-3xl text-[#2c3e50] mb-8">Riverside, Queen &amp; Double Bed</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 room-gallery" data-gallery="room-2">
+      <img src="images/Rooms/Riverside Queen/(1)f7cea144-71ed-4fee-b438-40ef2877158f.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside Queen and Double">
+      <img src="images/Rooms/Riverside Queen/(2)2ffbedc5-fa4a-4373-9c72-28b5a2a85182.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside Queen and Double">
+      <img src="images/Rooms/Riverside Queen/(3)ca1e6403-c7ec-41f7-bd00-c788d4d5f2a2.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside Queen and Double">
+      <img src="images/Rooms/Riverside Queen/(4)da728065-44b6-449f-a261-8cad6f8831fa.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside Queen and Double">
+      <img src="images/Rooms/Riverside Queen/(5)79334898-a370-432f-9fc1-e6ee9b60671d.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Riverside Queen and Double">
+    </div>
+    <div class="bg-white rounded-2xl p-8 border border-stone-200">
+      <h3 class="font-semibold text-lg text-[#2c3e50] mb-4">Amenities</h3>
+      <ul class="grid md:grid-cols-2 gap-3 text-[15px] text-stone-600">
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Air Conditioning</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Working Fireplace</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Kitchenette</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Refrigerator</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Cable/Satellite TV</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> WiFi</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Non-smoking</li>
+      </ul>
+      <p class="mt-6 text-sm text-stone-500">For reservations, call <a href="tel:7603762242" class="font-semibold text-[#2c3e50]">760 376 2242</a></p>
+    </div>
+  </div>
+
+  <!-- Room 3: Pool View King -->
+  <div class="mb-24">
+    <h2 class="heading-serif text-3xl text-[#2c3e50] mb-8">Pool View, King Bed</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 room-gallery" data-gallery="room-3">
+      <img src="images/Rooms/Poolview King/(1)5306075c-4b5e-406a-8251-56110028bc70.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Pool View King">
+      <img src="images/Rooms/Poolview King/(2)3f5fbce0-6135-4547-b172-4272d7daa728.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Pool View King">
+      <img src="images/Rooms/Poolview King/(3)f75117ac-008b-4cde-8afe-6e1a99fc9cfa.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Pool View King">
+      <img src="images/Rooms/Poolview King/(4)c9defe9f-0ec9-4a00-9972-427fab0f26fe.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Pool View King">
+    </div>
+    <div class="bg-white rounded-2xl p-8 border border-stone-200">
+      <h3 class="font-semibold text-lg text-[#2c3e50] mb-4">Amenities</h3>
+      <ul class="grid md:grid-cols-2 gap-3 text-[15px] text-stone-600">
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Air Conditioning</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Balcony/Terrace</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Working Fireplace</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Kitchenette</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Refrigerator</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Cable/Satellite TV</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> WiFi</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Non-smoking</li>
+      </ul>
+      <p class="mt-6 text-sm text-stone-500">For reservations, call <a href="tel:7603762242" class="font-semibold text-[#2c3e50]">760 376 2242</a></p>
+    </div>
+  </div>
+
+  <!-- Room 4: Courtyard Queen & Double -->
+  <div class="mb-24">
+    <h2 class="heading-serif text-3xl text-[#2c3e50] mb-8">Courtyard, Queen &amp; Double</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 room-gallery" data-gallery="room-4">
+      <img src="images/Rooms/Courtyard Queen Dbl/(1)97d3d3e8-3545-4666-9e32-37f42275fba9.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Courtyard Queen and Double">
+      <img src="images/Rooms/Courtyard Queen Dbl/(2)938c3691-bb4e-4575-93bc-66f07ca93b06.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Courtyard Queen and Double">
+      <img src="images/Rooms/Courtyard Queen Dbl/(3)e32ff67a-12f0-4376-b0be-15e7087ab1dc.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Courtyard Queen and Double">
+      <img src="images/Rooms/Courtyard Queen Dbl/(4)3240473b-2413-4ebd-995b-516028cec089.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Courtyard Queen and Double">
+      <img src="images/Rooms/Courtyard Queen Dbl/(5)748f2886-4316-4930-bd6f-092eecadd0fa.avif" class="w-full h-48 object-cover rounded-2xl gallery-img" alt="Courtyard Queen and Double">
+    </div>
+    <div class="bg-white rounded-2xl p-8 border border-stone-200">
+      <h3 class="font-semibold text-lg text-[#2c3e50] mb-4">Amenities</h3>
+      <ul class="grid md:grid-cols-2 gap-3 text-[15px] text-stone-600">
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Air Conditioning</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Balcony/Terrace</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Daily Maid Service</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Working Fireplace</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Kitchenette</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Refrigerator</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Cable/Satellite TV</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> WiFi</li>
+        <li class="flex items-start gap-2"><span class="text-[#f1c40f]">•</span> Non-smoking</li>
+      </ul>
+      <p class="mt-6 text-sm text-stone-500">For reservations, call <a href="tel:7603762242" class="font-semibold text-[#2c3e50]">760 376 2242</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="bg-[#2c3e50] text-white/80 text-center py-8 text-sm">
+  <div class="max-w-7xl mx-auto px-6">
+    © 2026 Falling Waters • Kernville, CA • <a href="tel:7603762242" class="text-[#f1c40f]">760 376 2242</a>
+  </div>
+</footer>
+
+<script>
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const closeBtn = document.getElementById('closeBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const imageCounter = document.getElementById('imageCounter');
+
+let currentGallery = [];
+let currentImageIndex = 0;
+
+// Open lightbox when image is clicked
+document.querySelectorAll('.gallery-img').forEach((img, index) => {
+  img.addEventListener('click', (e) => {
+    const gallery = e.target.closest('.room-gallery');
+    currentGallery = Array.from(gallery.querySelectorAll('.gallery-img')).map(i => i.src);
+    currentImageIndex = Array.from(gallery.querySelectorAll('.gallery-img')).indexOf(e.target);
+    
+    showLightbox();
+  });
+});
+
+function showLightbox() {
+  lightbox.classList.add('active');
+  updateLightboxImage();
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function updateLightboxImage() {
+  lightboxImage.src = currentGallery[currentImageIndex];
+  imageCounter.textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+}
+
+function nextImage() {
+  currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+  updateLightboxImage();
+}
+
+function prevImage() {
+  currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+  updateLightboxImage();
+}
+
+// Event listeners
+closeBtn.addEventListener('click', closeLightbox);
+nextBtn.addEventListener('click', nextImage);
+prevBtn.addEventListener('click', prevImage);
+
+// Close on backdrop click
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+// Keyboard controls
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('active')) return;
+  
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') nextImage();
+  if (e.key === 'ArrowLeft') prevImage();
+});
+</script>
+
+</body>
+</html>
