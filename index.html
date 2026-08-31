@@ -31,6 +31,16 @@
     .hero img.active {
       opacity: 1;
     }
+
+    /* Faint scrim so the hero title stays legible over any slide */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.32) 50%, rgba(0, 0, 0, 0.22) 100%);
+    }
   </style>
 </head>
 
@@ -97,9 +107,9 @@
   <section class="hero relative h-[520px] flex items-center justify-center overflow-hidden bg-black" id="hero">
     <div class="hero-content relative z-10 text-center px-6">
       <h1 class="heading-serif text-white text-4xl md:text-5xl font-bold tracking-tight">Your home away from home</h1>
-      <p class="mt-3 text-xl text-white/90 max-w-md mx-auto">A wonderful place to relax and unwind from the frenetic
-        pace of city life.</p>
-      <p class="mt-6 text-sm text-white/70">Call us to reserve your stay</p>
+      <p class="mt-3 text-xl text-white/90 max-w-md mx-auto">A wonderful place to relax and unwind.</p>
+      <p class="mt-6"><a href="tel:7603762242" class="text-2xl font-semibold text-[#f1c40f] hover:underline">(760) 376
+          2242</a></p>
     </div>
   </section>
 
@@ -114,7 +124,8 @@
   <!-- Rooms -->
   <div class="max-w-7xl mx-auto px-6 pb-16">
     <div class="flex items-end justify-between mb-6">
-      <h2 class="heading-serif text-3xl text-[#2c3e50]">Rooms</h2>
+      <h2 class="heading-serif text-3xl text-[#2c3e50]">Rooms <span class="text-xl">(Non-smoking, Air Conditioned,
+          Cable TV, and Wi Fi)</span></h2>
       <a href="rooms.html" class="text-sm font-semibold text-[#2c3e50] hover:underline">See all rooms →</a>
     </div>
 
@@ -123,12 +134,11 @@
         <img src="images/Rooms/Riverside King/(1)cd15e162-728a-47dd-a122-f413b291ceaa.avif"
           class="w-full h-48 object-cover" alt="Riverside King bed">
         <div class="p-5">
-          <h3 class="font-semibold text-lg">Riverside, King Bed</h3>
-          <div class="text-xs text-stone-500 mt-1 mb-3">Riverfront • King Bed</div>
-          <div class="text-xs space-y-1 text-stone-600">
-            <div>Air Conditioning • Balcony/Terrace</div>
-            <div>Working Fireplace • Kitchenette</div>
-            <div>Refrigerator • Cable TV • WiFi</div>
+          <h3 class="font-semibold text-lg">Riverside King -- $150.00</h3>
+          <div class="text-xs space-y-1 text-stone-600 mt-3">
+            <div>Air Conditioned • Fireplace</div>
+            <div>Kitchenette • Refrigerator</div>
+            <div>Dining Table</div>
           </div>
           <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
         </div>
@@ -138,12 +148,11 @@
         <img src="images/Rooms/Riverside Queen/(1)f7cea144-71ed-4fee-b438-40ef2877158f.avif"
           class="w-full h-48 object-cover" alt="Riverside Queen and double">
         <div class="p-5">
-          <h3 class="font-semibold text-lg">Riverside, Queen &amp; Double</h3>
-          <div class="text-xs text-stone-500 mt-1 mb-3">Riverfront • Queen + Double</div>
-          <div class="text-xs space-y-1 text-stone-600">
-            <div>Air Conditioning • Working Fireplace</div>
-            <div>Kitchenette • Refrigerator • Cable TV</div>
-            <div>WiFi • Non-smoking</div>
+          <h3 class="font-semibold text-lg">Riverside Queen &amp; Double (Two Beds) -- $150.00</h3>
+          <div class="text-xs space-y-1 text-stone-600 mt-3">
+            <div>Air Conditioned • Fireplace</div>
+            <div>Kitchenette • Refrigerator</div>
+            <div>Dining Table</div>
           </div>
           <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
         </div>
@@ -153,12 +162,11 @@
         <img src="images/Rooms/Poolview King/(1)5306075c-4b5e-406a-8251-56110028bc70.avif"
           class="w-full h-48 object-cover" alt="Pool View King">
         <div class="p-5">
-          <h3 class="font-semibold text-lg">Pool View, King Bed</h3>
-          <div class="text-xs text-stone-500 mt-1 mb-3">Pool View • King Bed</div>
-          <div class="text-xs space-y-1 text-stone-600">
-            <div>Air Conditioning • Balcony/Terrace</div>
-            <div>Working Fireplace • Kitchenette</div>
-            <div>Refrigerator • Cable TV • WiFi</div>
+          <h3 class="font-semibold text-lg">Pool View &amp; Courtyard King -- $150.00</h3>
+          <div class="text-xs space-y-1 text-stone-600 mt-3">
+            <div>Air Conditioned • Fireplace</div>
+            <div>Kitchenette • Refrigerator</div>
+            <div>Dining Table</div>
           </div>
           <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
         </div>
@@ -168,12 +176,11 @@
         <img src="images/Rooms/Courtyard Queen Dbl/(1)97d3d3e8-3545-4666-9e32-37f42275fba9.avif"
           class="w-full h-48 object-cover" alt="Courtyard Queen and Double">
         <div class="p-5">
-          <h3 class="font-semibold text-lg">Courtyard, Queen &amp; Double</h3>
-          <div class="text-xs text-stone-500 mt-1 mb-3">Courtyard View • Queen + Double</div>
-          <div class="text-xs space-y-1 text-stone-600">
-            <div>Air Conditioning • Balcony/Terrace</div>
-            <div>Working Fireplace • Daily Maid Service</div>
-            <div>Kitchenette • Refrigerator • WiFi</div>
+          <h3 class="font-semibold text-lg">Pool View/Courtyard Queen &amp; Double (Two Beds) -- $150.00</h3>
+          <div class="text-xs space-y-1 text-stone-600 mt-3">
+            <div>Air Conditioned • Fireplace</div>
+            <div>Kitchenette • Refrigerator</div>
+            <div>Dining Table</div>
           </div>
           <a href="rooms.html" class="mt-4 inline-block text-sm font-semibold text-[#2c3e50]">View room →</a>
         </div>
@@ -187,7 +194,7 @@
       <div class="max-w-3xl">
         <h2 class="heading-serif text-3xl text-[#2c3e50] mb-6">About Falling Waters</h2>
         <div class="prose prose-stone text-[15px] leading-relaxed text-stone-700">
-          <p>Located on the banks of the National Wild and Scenic Kern River, just a few short miles north of historic
+          <p>Located alongside the National Wild and Scenic Kern River, just two and &frac12; miles upstream of historic
             Kernville, California, our rustic river resort awaits your pleasure.</p>
           <p class="mt-4">The moment you step into the resort office you'll admire the attention to detail and comfort
             that you'd expect from the finest hostels anywhere. But our exquisite, tastefully furnished rooms and low
@@ -242,8 +249,8 @@
           </div>
           <div>
             <div class="font-semibold">Email</div>
-            <a href="mailto:fallingwaters@chuckrichards.com"
-              class="text-[#2c3e50] hover:underline">fallingwaters@chuckrichards.com</a>
+            <a href="mailto:FallingWaters@ChuckRichards.com"
+              class="text-[#2c3e50] hover:underline">FallingWaters@ChuckRichards.com</a>
           </div>
           <div>
             <div class="font-semibold">Address</div>
